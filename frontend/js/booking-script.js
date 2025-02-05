@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
                     if (response.success) {
                         refreshBookingTable();
                         alert("Rezerwacja została pomyślnie dodana.");
-                        //location.reload();
+                        location.reload();
                     } else {
                         alert(response.data || "Wystąpił błąd.");
                     }
