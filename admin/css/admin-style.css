@@ -1,0 +1,54 @@
+.wrap {
+    font-family: Arial, sans-serif;
+}
+
+.wp-list-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.wp-list-table th,
+.wp-list-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.wp-list-table th {
+    background-color: #0073aa;
+    color: white;
+}
+
+.delete-booking {
+    background-color: #d9534f;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-booking:hover {
+    background-color: #c9302c;
+}
+
+.wrap h1 {
+    margin-bottom: 20px;
+}
+
+.form-table th {
+    text-align: left;
+    padding: 10px;
+    vertical-align: top;
+    width: 25%;
+}
+
+.form-table td {
+    padding: 10px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 500px;
+}
