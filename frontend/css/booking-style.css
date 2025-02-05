@@ -10,7 +10,7 @@
 }
 
 .srbs-booking-table th, .srbs-booking-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     padding: 10px;
     text-align: center;
 }

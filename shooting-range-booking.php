@@ -53,6 +53,16 @@ function srbs_add_shooter_role() {
     }
 }
 
+// ✅ Wyłączenie cache dla strony rezerwacji
+function srbs_disable_cache() {
+    if (is_page('rezerwacje-klub')) { // Podmień na właściwy slug strony
+        header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+        header("Cache-Control: post-check=0, pre-check=0", false);
+        header("Pragma: no-cache");
+    }
+}
+add_action('send_headers', 'srbs_disable_cache');
+
 // Hook do aktywacji wtyczki
 register_activation_hook(__FILE__, 'srbs_add_shooter_role');
 

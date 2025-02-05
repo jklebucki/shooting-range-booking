@@ -3,6 +3,11 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+//Wyłączenie cache dla strony rezerwacji
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 // Sprawdzenie, czy użytkownik jest zalogowany
 if (!is_user_logged_in()) {
     // Przekierowanie do logowania i powrót na stronę rezerwacji po zalogowaniu
@@ -75,7 +80,7 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
             <tr>
                 <th>Godzina</th>
                 <?php for ($i = 1; $i <= 8; $i++): ?>
-                    <th>Stanowisko <?php echo $i; ?></th>
+                    <th>St. <?php echo $i; ?></th>
                 <?php endfor; ?>
             </tr>
         </thead>
