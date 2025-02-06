@@ -44,14 +44,7 @@ function srbs_admin_menu()
 }
 add_action('admin_menu', 'srbs_admin_menu');
 
-// ✅ Funkcja dodająca rolę shooter przy aktywacji wtyczki
-function srbs_add_shooter_role() {
-    if (!get_role('shooter')) {
-        add_role('shooter', 'Strzelec', [
-            'read' => true, // Użytkownik może czytać posty
-        ]);
-    }
-}
+
 
 // ✅ Wyłączenie cache dla strony rezerwacji
 function srbs_disable_cache() {
@@ -62,6 +55,15 @@ function srbs_disable_cache() {
     }
 }
 add_action('send_headers', 'srbs_disable_cache');
+
+// ✅ Funkcja dodająca rolę shooter przy aktywacji wtyczki
+function srbs_add_shooter_role() {
+    if (!get_role('shooter')) {
+        add_role('shooter', 'Strzelec', [
+            'read' => true, // Użytkownik może czytać posty
+        ]);
+    }
+}
 
 // Hook do aktywacji wtyczki
 register_activation_hook(__FILE__, 'srbs_add_shooter_role');
