@@ -45,30 +45,35 @@
 /* Stylowanie przycisków */
 .srbs-admin button.add-shooter-role,
 .srbs-admin button.remove-shooter-role {
-    padding: 7px 12px !important;
+    padding: 10px 16px !important;
     border: none !important;
-    border-radius: 4px !important;
+    border-radius: 20px !important;
     font-size: 14px !important;
     cursor: pointer !important;
-    transition: background 0.2s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
 }
 
 .srbs-admin button.add-shooter-role {
-    background-color: #28a745 !important;
+    background-color: #4caf50 !important;
     color: white !important;
 }
 
 .srbs-admin button.add-shooter-role:hover {
-    background-color: #218838 !important;
+    background-color: #45a049 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15) !important;
 }
 
 .srbs-admin button.remove-shooter-role {
-    background-color: #dc3545 !important;
+    background-color: #f44336 !important;
     color: white !important;
 }
 
 .srbs-admin button.remove-shooter-role:hover {
-    background-color: #c82333 !important;
+    background-color: #e53935 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Zabezpieczenie przed zbyt długim tekstem */
