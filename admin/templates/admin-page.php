@@ -40,7 +40,7 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
                     <td colspan="7"><strong><?php echo esc_html($date); ?></strong></td>
                 </tr>
                 <?php foreach ($bookings_list as $booking): ?>
-                    <tr class="details-row" data-date="<?php echo esc_attr($booking->date); ?>">
+                    <tr class="details-row" data-date="<?php echo esc_attr($booking->date); ?>" style="display: none;">
                         <td><?php echo get_userdata($booking->user_id)->display_name; ?></td>
                         <td><?php echo esc_html($booking->club_number); ?></td>
                         <td><?php echo esc_html($booking->time_slot); ?></td>
