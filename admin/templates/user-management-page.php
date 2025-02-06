@@ -7,7 +7,7 @@ global $wpdb;
 $users = get_users();
 
 ?>
-<div class="wrap">
+<div class="wrap srbs-admin">
     <h1>Zarządzanie Użytkownikami</h1>
     <table class="wp-list-table widefat fixed striped">
         <thead>
