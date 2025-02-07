@@ -1,20 +1,25 @@
-function refreshBookingTable() {
-    $.ajax({
-        url: srbs_ajax.ajaxurl,
-        type: "POST",
-        data: {
-            action: "srbs_get_bookings",
-            _timestamp: new Date().getTime()
-        },
-        success: function(response) {
-            if (response.success) {
-                $(".srbs-booking-table").html(response.data); // Podmiana tabeli rezerwacji
-            }
-        }
-    });
-}
-
 jQuery(document).ready(function ($) {
+    function refreshBookingTable() {
+        $.ajax({
+            url: srbs_ajax.ajaxurl,
+            type: "POST",
+            data: {
+                action: "srbs_get_bookings",
+                _timestamp: new Date().getTime()
+            },
+            success: function(response) {
+                if (response.success) {
+                    $(".srbs-booking-table").html(response.data); // Podmiana tabeli rezerwacji
+                } else {
+                    alert(response.data || "Wystąpił błąd podczas odświeżania tabeli rezerwacji.");
+                }
+            },
+            error: function() {
+                alert("Wystąpił błąd podczas komunikacji z serwerem.");
+            }
+        });
+    }
+
     $(".srbs-book-slot").on("click", function () {
         var standNumber = $(this).data("stand");
         var timeSlot = $(this).data("time");
@@ -38,8 +43,11 @@ jQuery(document).ready(function ($) {
                         alert("Rezerwacja została pomyślnie dodana.");
                         location.reload();
                     } else {
-                        alert(response.data || "Wystąpił błąd.");
+                        alert(response.data || "Wystąpił błąd podczas dodawania rezerwacji.");
                     }
+                },
+                error: function() {
+                    alert("Wystąpił błąd podczas komunikacji z serwerem.");
                 }
             });
         }
