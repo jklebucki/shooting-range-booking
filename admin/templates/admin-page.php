@@ -29,12 +29,12 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
             </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
             $grouped_bookings = [];
             foreach ($bookings as $booking) {
                 $grouped_bookings[$booking->date][] = $booking;
             }
-            
+
             foreach ($grouped_bookings as $date => $bookings_list): ?>
                 <tr class="grouped-row" data-date="<?php echo esc_attr($date); ?>">
                     <td colspan="7"><strong><?php echo esc_html($date); ?></strong></td>
@@ -71,14 +71,6 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
             let selectedDate = document.getElementById("filter-date").value;
             document.querySelectorAll(".grouped-row, .details-row").forEach(row => {
                 row.style.display = row.getAttribute("data-date") === selectedDate ? "table-row" : "none";
-            });
-        });
-
-        document.querySelectorAll(".delete-booking").forEach(button => {
-            button.addEventListener("click", function() {
-                let bookingId = this.getAttribute("data-id");
-                let row = document.querySelector(`.details-row[data-id='${bookingId}']`);
-                row.parentNode.removeChild(row);
             });
         });
     });

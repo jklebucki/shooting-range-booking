@@ -11,26 +11,26 @@
 .wp-list-table th,
 .wp-list-table td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ddd !important;
     text-align: center;
 }
 
 .wp-list-table th {
-    background-color: #0073aa;
+    background-color: #0073aa !important;
     color: white;
 }
 
 .delete-booking {
-    background-color: #d9534f;
+    background-color: #d9534f !important;
     border: none;
     color: white;
-    padding: 5px 10px;
+    padding: 5px 5px;
     cursor: pointer;
     border-radius: 3px;
 }
 
 .delete-booking:hover {
-    background-color: #c9302c;
+    background-color: #c9302c !important;
 }
 
 .wrap h1 {
