@@ -14,7 +14,7 @@ jQuery(document).ready(function ($) {
                 success: function (response) {
                     if (response.success) {
                         alert("Rezerwacja została usunięta.");
-                        location.reload();
+                        $(`.details-row[data-id='${bookingId}']`).remove();
                     } else {
                         alert("Wystąpił błąd: " + response.data);
                     }

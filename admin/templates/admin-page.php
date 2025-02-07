@@ -40,7 +40,7 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
                     <td colspan="7"><strong><?php echo esc_html($date); ?></strong></td>
                 </tr>
                 <?php foreach ($bookings_list as $booking): ?>
-                    <tr class="details-row" data-date="<?php echo esc_attr($booking->date); ?>" style="display: none;">
+                    <tr class="details-row" data-date="<?php echo esc_attr($booking->date); ?>" data-id="<?php echo $booking->id; ?>" style="display: none;">
                         <td><?php echo get_userdata($booking->user_id)->display_name; ?></td>
                         <td><?php echo esc_html($booking->club_number); ?></td>
                         <td><?php echo esc_html($booking->time_slot); ?></td>
@@ -71,6 +71,14 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
             let selectedDate = document.getElementById("filter-date").value;
             document.querySelectorAll(".grouped-row, .details-row").forEach(row => {
                 row.style.display = row.getAttribute("data-date") === selectedDate ? "table-row" : "none";
+            });
+        });
+
+        document.querySelectorAll(".delete-booking").forEach(button => {
+            button.addEventListener("click", function() {
+                let bookingId = this.getAttribute("data-id");
+                let row = document.querySelector(`.details-row[data-id='${bookingId}']`);
+                row.parentNode.removeChild(row);
             });
         });
     });
