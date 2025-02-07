@@ -44,8 +44,6 @@ function srbs_admin_menu()
 }
 add_action('admin_menu', 'srbs_admin_menu');
 
-
-
 // ✅ Wyłączenie cache dla strony rezerwacji
 function srbs_disable_cache() {
     if (is_page('rezerwacje-klub')) { // Podmień na właściwy slug strony
@@ -67,7 +65,6 @@ function srbs_add_shooter_role() {
 
 // Hook do aktywacji wtyczki
 register_activation_hook(__FILE__, 'srbs_add_shooter_role');
-
 
 // ✅ Funkcja renderująca stronę administracyjną
 function srbs_admin_page()
@@ -96,7 +93,6 @@ function srbs_user_management_page() {
     include plugin_dir_path(__FILE__) . 'admin/templates/user-management-page.php';
 }
 
-
 // ✅ Ładowanie plików CSS i JS dla panelu użytkowników
 function srbs_enqueue_user_management_assets($hook)
 {
@@ -116,7 +112,6 @@ add_action('admin_enqueue_scripts', 'srbs_enqueue_user_management_assets');
 
 // ✅ Załadowanie obsługi AJAX
 include plugin_dir_path(__FILE__) . 'admin/includes/user-management-ajax.php';
-
 
 // ✅ Rejestracja shortcode dla interfejsu użytkownika
 function srbs_booking_shortcode()
