@@ -49,7 +49,7 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
                         <td><?php echo esc_html($booking->stand_number); ?></td>
                         <td><?php echo esc_html(ucfirst($booking->booking_type)); ?></td>
                         <td>
-                            <button class="button button-primary delete-booking" data-id="<?php echo $booking->id; ?>">Usuń</button>
+                            <button class="button delete-booking" data-id="<?php echo $booking->id; ?>">Usuń</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>

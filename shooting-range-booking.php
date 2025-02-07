@@ -144,6 +144,7 @@ function srbs_enqueue_admin_assets($hook)
         return;
     }
 
+    wp_enqueue_style('srbs-admin-css', plugin_dir_url(__FILE__) . 'admin/css/admin-style.css'); // Import admin-style.css
     wp_enqueue_script('srbs-admin-js', plugin_dir_url(__FILE__) . 'admin/js/admin-script.js', array('jquery'), null, true);
     wp_localize_script('srbs-admin-js', 'srbs_ajax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),

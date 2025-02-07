@@ -46,37 +46,21 @@
 }
 
 .button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.button-primary {
-    background-color: #0073aa !important;
-    color: white !important;
-}
-
-.button-primary:hover {
-    background-color: #005177 !important;
+    margin: 0px !important;
 }
 
 .delete-booking {
-    background-color: #d9534f !important;
+    margin: 0px !important;
+    background: #d9534f !important;
+    border-color: #d43f3a !important;
     border: none;
     color: white !important;
-    padding: 5px 5px;
     cursor: pointer;
     border-radius: 3px;
 }
 
 .delete-booking:hover {
-    background-color: #c9302c !important;
+    background: #c9302c !important;
 }
 
 .wrap h1 {
