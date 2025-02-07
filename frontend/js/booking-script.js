@@ -20,6 +20,7 @@ jQuery(document).ready(function ($) {
                     location.reload();
                 } else {
                     alert(response.data || "Wystąpił błąd podczas dodawania rezerwacji.");
+                    location.reload(); // Refresh the page to show the updated booking status
                 }
             },
             error: function () {

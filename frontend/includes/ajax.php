@@ -33,13 +33,24 @@ function srbs_make_booking() {
         wp_send_json_error("Możesz dokonać tylko jednej rezerwacji na strzelanie $booking_type.");
     }
 
+    // Sprawdzenie, czy slot jest już zajęty
+    $stand_number = $dynamic ? 0 : intval($_POST['stand_number']);
+    $slot_booked = $wpdb->get_var($wpdb->prepare("
+        SELECT COUNT(*) FROM $bookings_table
+        WHERE date = %s AND time_slot = %s AND (stand_number = %d OR (booking_type = 'dynamic' AND stand_number = 0))
+    ", $date, $time_slot, $stand_number));
+
+    if ($slot_booked > 0) {
+        wp_send_json_error("Wybrany slot jest już zajęty.");
+    }
+
     // Wstawienie rezerwacji z wartością 0 dla dynamicznego strzelania
     $wpdb->insert($bookings_table, [
         'user_id' => $user_id,
         'club_number' => $club_number,
         'date' => $date,
         'time_slot' => $time_slot,
-        'stand_number' => $dynamic ? 0 : intval($_POST['stand_number']),
+        'stand_number' => $stand_number,
         'booking_type' => $booking_type
     ]);
 
