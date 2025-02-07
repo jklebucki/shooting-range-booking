@@ -21,14 +21,42 @@
 }
 
 .srbs-book-slot {
-    background-color: #28a745 !important;
-    color: white !important;
+    display: inline-flex;
+    align-items: center;
     padding: 5px 10px;
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
     border: none;
-    border-radius: 3px;
+    border-radius: 12px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .srbs-book-slot:hover {
-    background-color: #218838 !important;
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: rgba(0, 115, 170, 0.1);
+    color: #0073aa;
+    border-radius: 12px;
+    position: relative;
+    font-size: 14px;
+}
+
+.srbs-cancel-booking {
+    padding: 0px !important;
+    background: none;
+    border: none;
+    color: red;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

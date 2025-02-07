@@ -64,7 +64,7 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
 {
     foreach ($bookings as $booking) {
         if ($booking->time_slot == $time_slot && ($booking->stand_number == $stand_number || ($booking->booking_type == 'dynamic' && $booking->stand_number == 0))) {
-            return $booking->club_number;
+            return $booking;
         }
     }
     return false;
@@ -93,9 +93,13 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
                     <?php for ($i = 1; $i <= 8; $i++): ?>
                         <td>
                             <?php
-                            $booked_club_number = srbs_is_slot_booked($bookings, $i, $time_slot);
-                            if ($booked_club_number): ?>
-                                <span>#<?php echo esc_html($booked_club_number); ?> </span>
+                            $booking = srbs_is_slot_booked($bookings, $i, $time_slot);
+                            if ($booking): ?>
+                                <span class="badge">Nr #<?php echo esc_html($booking->club_number); ?> 
+                                    <?php if ($booking->user_id == $current_user_id): ?>
+                                        <button class="srbs-cancel-booking" data-booking-id="<?php echo $booking->id; ?>">x</button>
+                                    <?php endif; ?>
+                                </span>
                             <?php else: ?>
                                 <button class="srbs-book-slot" data-stand="<?php echo $i; ?>" data-time="<?php echo $time_slot; ?>">Rezerwuj</button>
                             <?php endif; ?>
@@ -114,14 +118,17 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
                     if (count($dynamic_bookings) >= $dynamic_slots): ?>
                         <span>Wszystkie miejsca zajęte</span>
                     <?php else: ?>
-                        <button class="srbs-book-slot" data-time="19:00-20:00" data-dynamic="true">Rezerwuj miejsce</button>
+                        <button class="srbs-book-slot" style="margin-bottom: 3px !important;" data-time="19:00-20:00" data-dynamic="true">Rezerwuj miejsce</button>
                     <?php endif; ?>
 
-                    <br>
                     <?php if (!empty($dynamic_bookings)): ?>
                         <strong>Uczestnicy:</strong>
                         <?php foreach ($dynamic_bookings as $booking): ?>
-                            <span>Nr #<?php echo esc_html($booking->club_number); ?></span>
+                            <span class="badge">Nr #<?php echo esc_html($booking->club_number); ?> 
+                                <?php if ($booking->user_id == $current_user_id): ?>
+                                    <button class="srbs-cancel-booking" data-booking-id="<?php echo $booking->id; ?>">x</button>
+                                <?php endif; ?>
+                            </span>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <span>Brak zapisanych uczestników.</span>

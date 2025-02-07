@@ -45,3 +45,33 @@ function srbs_make_booking() {
 
     wp_send_json_success("Rezerwacja dodana.");
 }
+
+// ✅ Obsługa AJAX dla anulowania rezerwacji
+add_action('wp_ajax_cancel_booking', 'srbs_cancel_booking');
+
+function srbs_cancel_booking() {
+    check_ajax_referer('srbs_nonce', 'security');
+
+    if (!is_user_logged_in()) {
+        wp_send_json_error("Musisz być zalogowany.");
+    }
+
+    global $wpdb;
+    $user_id = get_current_user_id();
+    $booking_id = intval($_POST['booking_id']);
+
+    // Sprawdzenie, czy rezerwacja należy do zalogowanego użytkownika
+    $bookings_table = $wpdb->prefix . 'srbs_bookings';
+    $booking = $wpdb->get_row($wpdb->prepare("
+        SELECT * FROM $bookings_table WHERE id = %d AND user_id = %d
+    ", $booking_id, $user_id));
+
+    if (!$booking) {
+        wp_send_json_error("Nie znaleziono rezerwacji lub nie masz uprawnień do jej anulowania.");
+    }
+
+    // Usunięcie rezerwacji
+    $wpdb->delete($bookings_table, ['id' => $booking_id]);
+
+    wp_send_json_success("Rezerwacja anulowana.");
+}
