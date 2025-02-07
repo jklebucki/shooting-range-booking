@@ -2,10 +2,27 @@
     font-family: Arial, sans-serif;
 }
 
+.filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-wrapper label {
+    margin-right: 10px;
+}
+
+.filter-wrapper input[type="date"] {
+    margin-right: 10px;
+}
+
 .wp-list-table {
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
+    border: 1px solid #ddd !important;
 }
 
 .wp-list-table th,
@@ -20,10 +37,39 @@
     color: white;
 }
 
+.wp-list-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.wp-list-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.button-primary {
+    background-color: #0073aa !important;
+    color: white !important;
+}
+
+.button-primary:hover {
+    background-color: #005177 !important;
+}
+
 .delete-booking {
     background-color: #d9534f !important;
     border: none;
-    color: white;
+    color: white !important;
     padding: 5px 5px;
     cursor: pointer;
     border-radius: 3px;

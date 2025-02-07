@@ -12,9 +12,11 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
     <h1>Rezerwacje Strzelnicy</h1>
     <p>Panel zarządzania rezerwacjami stanowisk strzeleckich.</p>
 
-    <label for="filter-date">Filtruj po dacie:</label>
-    <input type="date" id="filter-date" name="filter-date">
-    <button class="button button-primary" id="apply-filter">Filtruj</button>
+    <div class="filter-wrapper">
+        <label for="filter-date">Filtruj po dacie:</label>
+        <input type="date" id="filter-date" name="filter-date">
+        <button class="button button-primary" id="apply-filter">Filtruj</button>
+    </div>
 
     <table class="wp-list-table widefat fixed striped">
         <thead>
