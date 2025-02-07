@@ -95,7 +95,7 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
                             <?php
                             $booked_club_number = srbs_is_slot_booked($bookings, $i, $time_slot);
                             if ($booked_club_number): ?>
-                                <span>Zajęte przez <?php echo esc_html($booked_club_number); ?></span>
+                                <span>#<?php echo esc_html($booked_club_number); ?> </span>
                             <?php else: ?>
                                 <button class="srbs-book-slot" data-stand="<?php echo $i; ?>" data-time="<?php echo $time_slot; ?>">Rezerwuj</button>
                             <?php endif; ?>

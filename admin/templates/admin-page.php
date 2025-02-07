@@ -15,7 +15,7 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
     <div class="filter-wrapper">
         <label for="filter-date">Filtruj po dacie:</label>
         <input type="date" id="filter-date" name="filter-date">
-        <button class="button button-primary" id="apply-filter">Filtruj</button>
+        <button class="button button-primary" style="margin: 0px !important;" id="apply-filter">Filtruj</button>
     </div>
 
     <table class="wp-list-table widefat fixed striped">
@@ -43,6 +43,7 @@ $bookings = $wpdb->get_results("SELECT * FROM $table_name ORDER BY date DESC, ti
                 </tr>
                 <?php foreach ($bookings_list as $booking): ?>
                     <tr class="details-row" data-date="<?php echo esc_attr($booking->date); ?>" data-id="<?php echo $booking->id; ?>" style="display: none;">
+                        <td><?php echo esc_attr($booking->date); ?></td>
                         <td><?php echo get_userdata($booking->user_id)->display_name; ?></td>
                         <td><?php echo esc_html($booking->club_number); ?></td>
                         <td><?php echo esc_html($booking->time_slot); ?></td>
