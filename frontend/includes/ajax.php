@@ -6,7 +6,8 @@ if (!defined('ABSPATH')) {
 // ✅ Obsługa AJAX dla rezerwacji użytkownika
 add_action('wp_ajax_make_booking', 'srbs_make_booking');
 
-function srbs_make_booking() {
+function srbs_make_booking()
+{
     check_ajax_referer('srbs_nonce', 'security');
 
     if (!is_user_logged_in()) {
@@ -35,13 +36,30 @@ function srbs_make_booking() {
 
     // Sprawdzenie, czy slot jest już zajęty
     $stand_number = $dynamic ? 0 : intval($_POST['stand_number']);
-    $slot_booked = $wpdb->get_var($wpdb->prepare("
+
+    if ($stand_number > 0) {
+        $slot_booked = $wpdb->get_var($wpdb->prepare("
         SELECT COUNT(*) FROM $bookings_table
-        WHERE date = %s AND time_slot = %s AND (stand_number = %d OR (booking_type = 'dynamic' AND stand_number = 0))
+        WHERE date = %s AND time_slot = %s AND stand_number = %d
     ", $date, $time_slot, $stand_number));
 
-    if ($slot_booked > 0) {
-        wp_send_json_error("Wybrany slot jest już zajęty.");
+        if ($slot_booked > 0) {
+            wp_send_json_error("Wybrany slot jest już zajęty.");
+        }
+    }
+
+    // Sprawdzenie, czy liczba miejsc dla dynamicznego strzelania nie została przekroczona
+    if ($stand_number == 0) {
+        $dynamic_slots = srbs_get_setting('max_dynamic_slots');
+        $dynamic_slots = $dynamic_slots ? intval($dynamic_slots) : 5;
+        $dynamic_bookings_count = $wpdb->get_var($wpdb->prepare("
+            SELECT COUNT(*) FROM $bookings_table
+            WHERE date = %s AND time_slot = %s AND stand_number = 0
+        ", $date, $time_slot));
+
+        if ($dynamic_bookings_count >= $dynamic_slots) {
+            wp_send_json_error("Wszystkie miejsca dla dynamicznego strzelania są już zajęte.");
+        }
     }
 
     // Wstawienie rezerwacji z wartością 0 dla dynamicznego strzelania
@@ -60,7 +78,8 @@ function srbs_make_booking() {
 // ✅ Obsługa AJAX dla anulowania rezerwacji
 add_action('wp_ajax_cancel_booking', 'srbs_cancel_booking');
 
-function srbs_cancel_booking() {
+function srbs_cancel_booking()
+{
     check_ajax_referer('srbs_nonce', 'security');
 
     if (!is_user_logged_in()) {
