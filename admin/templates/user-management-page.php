@@ -13,6 +13,7 @@ $users = get_users();
         <thead>
             <tr>
                 <th>ID</th>
+                <th>Użytkownik</th>
                 <th>Email</th>
                 <th>Imię</th>
                 <th>Nazwisko</th>
@@ -25,6 +26,7 @@ $users = get_users();
             <?php foreach ($users as $user): ?>
                 <tr>
                     <td><?php echo esc_html($user->ID); ?></td>
+                    <td><?php echo esc_html($user->user_login); ?></td>
                     <td><?php echo esc_html($user->user_email); ?></td>
                     <td><?php echo esc_html($user->first_name); ?></td>
                     <td><?php echo esc_html($user->last_name); ?></td>
