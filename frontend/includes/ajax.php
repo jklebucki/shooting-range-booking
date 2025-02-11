@@ -105,3 +105,41 @@ function srbs_cancel_booking()
 
     wp_send_json_success("Rezerwacja anulowana.");
 }
+
+function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
+{
+    foreach ($bookings as $booking) {
+        if ($booking->time_slot == $time_slot && ($booking->stand_number == $stand_number || ($booking->booking_type == 'dynamic' && $booking->stand_number == 0))) {
+            return $booking;
+        }
+    }
+    return false;
+}
+
+// ✅ Obsługa AJAX dla ładowania tabeli rezerwacji
+add_action('wp_ajax_load_booking_table', 'srbs_load_booking_table');
+
+function srbs_load_booking_table()
+{
+    check_ajax_referer('srbs_nonce', 'security');
+
+    if (!is_user_logged_in()) {
+        wp_send_json_error("Musisz być zalogowany.");
+    }
+
+    global $wpdb;
+    $next_reservation_date = srbs_get_setting('next_reservation_date');
+    $bookings_table = $wpdb->prefix . 'srbs_bookings';
+    $bookings = $wpdb->get_results($wpdb->prepare("
+        SELECT * FROM $bookings_table WHERE date = %s
+    ", $next_reservation_date));
+
+    $dynamic_slots = srbs_get_setting('max_dynamic_slots');
+    $dynamic_slots = $dynamic_slots ? intval($dynamic_slots) : 5;
+
+    ob_start();
+    include plugin_dir_path(dirname(__FILE__)) . 'templates/booking-table.php';
+    $table_html = ob_get_clean();
+
+    wp_send_json_success($table_html);
+}
