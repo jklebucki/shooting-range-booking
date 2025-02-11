@@ -118,7 +118,7 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
                     if (count($dynamic_bookings) >= $dynamic_slots): ?>
                         <span>Wszystkie miejsca zajęte</span>
                     <?php else: ?>
-                        <button class="srbs-book-slot" style="margin-bottom: 3px !important;" data-time="19:00-20:00" data-dynamic="true">Rezerwuj miejsce</button>
+                        <button class="srbs-book-slot" style="margin-bottom: 3px !important;" data-time="19:00-20:00" data-dynamic="true">Rezerwuj</button>
                     <?php endif; ?>
 
                     <?php if (!empty($dynamic_bookings)): ?>

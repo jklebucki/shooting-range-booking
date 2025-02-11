@@ -33,11 +33,12 @@
 .srbs-book-slot {
     display: inline-flex !important;
     align-items: center;
+    justify-content: center; /* Center the text */
     padding: 5px 10px !important;
     background-color: rgba(40, 167, 69, 0.1);
     color: #28a745;
     border: none;
-    border-radius: 12px !important;
+    border-radius: 12px !important; /* Match the badge shape */
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
