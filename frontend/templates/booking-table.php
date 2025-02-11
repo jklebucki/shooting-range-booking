@@ -26,7 +26,7 @@ $current_user_id = get_current_user_id();
                         <?php
                         $booking = srbs_is_slot_booked($bookings, $i, $time_slot);
                         if ($booking): ?>
-                            <span class="badge">Nr #<?php echo esc_html($booking->club_number); ?> 
+                            <span class="badge">#<?php echo esc_html($booking->club_number); ?> 
                                 <?php if ($booking->user_id == $current_user_id): ?>
                                     <button class="srbs-cancel-booking" data-booking-id="<?php echo $booking->id; ?>">x</button>
                                 <?php endif; ?>
@@ -55,7 +55,7 @@ $current_user_id = get_current_user_id();
                 <?php if (!empty($dynamic_bookings)): ?>
                     <strong>Uczestnicy:</strong>
                     <?php foreach ($dynamic_bookings as $booking): ?>
-                        <span class="badge">Nr #<?php echo esc_html($booking->club_number); ?> 
+                        <span class="badge">#<?php echo esc_html($booking->club_number); ?> 
                             <?php if ($booking->user_id == $current_user_id): ?>
                                 <button class="srbs-cancel-booking" data-booking-id="<?php echo $booking->id; ?>">x</button>
                             <?php endif; ?>
