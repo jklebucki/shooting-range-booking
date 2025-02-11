@@ -89,9 +89,9 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
             $time_slots = ['17:00-18:00', '18:00-19:00'];
             foreach ($time_slots as $time_slot): ?>
                 <tr>
-                    <td><?php echo $time_slot; ?></td>
+                    <td data-label="Godzina"><?php echo $time_slot; ?></td>
                     <?php for ($i = 1; $i <= 8; $i++): ?>
-                        <td>
+                        <td data-label="St. <?php echo $i; ?>">
                             <?php
                             $booking = srbs_is_slot_booked($bookings, $i, $time_slot);
                             if ($booking): ?>
@@ -108,7 +108,7 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
                 </tr>
             <?php endforeach; ?>
             <tr>
-                <td>19:00-20:00</td>
+                <td data-label="Godzina">19:00-20:00</td>
                 <td colspan="8">
                     <?php
                     $dynamic_bookings = array_filter($bookings, function ($booking) {

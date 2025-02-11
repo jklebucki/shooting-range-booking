@@ -2,36 +2,49 @@
     max-width: 90% !important;
     font-family: Arial, sans-serif;
     margin: 20px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 15px;
 }
 
 .srbs-booking-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin: 15px 0;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .srbs-booking-table th, .srbs-booking-table td {
     border: 1px solid #ddd !important;
-    padding: 10px;
+    padding: 12px;
     text-align: center;
+    border: 1px solid #ddd;
 }
 
 .srbs-booking-table th {
     background-color: #0073aa !important;
     color: white !important;
+    background-color: #f5f5f5;
+    font-weight: bold;
 }
 
 .srbs-book-slot {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px 10px !important;
     background-color: rgba(40, 167, 69, 0.1);
     color: #28a745;
     border: none;
-    border-radius: 12px;
+    border-radius: 12px !important;
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
+    width: 100%;
+    max-width: 120px;
+    margin: 2px;
+    padding: 6px;
 }
 
 .srbs-book-slot:hover {
@@ -39,14 +52,14 @@
 }
 
 .badge {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
-    padding: 5px 10px;
-    background-color: rgba(0, 115, 170, 0.1);
+    padding: 5px 10px !important;
+    background-color: rgba(0, 115, 170, 0.1) !important;
     color: #0073aa;
-    border-radius: 12px;
-    position: relative;
-    font-size: 14px;
+    border-radius: 12px !important;
+    position: relative !important;
+    font-size: 14px !important;
 }
 
 .srbs-cancel-booking {
@@ -60,4 +73,66 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Style dla urządzeń mobilnych */
+@media screen and (max-width: 768px) {
+    .srbs-booking-table {
+        display: block;
+    }
+
+    .srbs-booking-table thead {
+        display: none; /* Ukryj nagłówki na mobile */
+    }
+
+    .srbs-booking-table tbody,
+    .srbs-booking-table tr,
+    .srbs-booking-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .srbs-booking-table tr {
+        margin-bottom: 15px;
+        border: 2px solid #ddd;
+    }
+
+    .srbs-booking-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .srbs-booking-table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 12px;
+        width: 45%;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /* Specjalne style dla ostatniego wiersza (dynamiczne strzelanie) */
+    .srbs-booking-table tr:last-child td {
+        text-align: center;
+        padding-left: 12px;
+    }
+
+    .srbs-booking-table tr:last-child td:before {
+        display: none;
+    }
+}
+
+/* Style dla tabletów */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .srbs-booking-container {
+        padding: 10px;
+    }
+
+    .srbs-booking-table th,
+    .srbs-booking-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
 }
