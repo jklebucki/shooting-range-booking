@@ -30,6 +30,11 @@
     font-weight: bold;
 }
 
+.srbs-booking-table th:first-child, .srbs-booking-table td:first-child {
+    width: 100px; /* Adjust width to ensure text fits in one line */
+    min-width: 100px; /* Ensure minimum width */
+}
+
 .srbs-book-slot {
     display: inline-flex !important;
     align-items: center;
@@ -121,6 +126,11 @@
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
+    }
+
+    .srbs-booking-table td:first-child {
+        width: 100%; /* Ensure full width for the "Godzina" column */
+        min-width: 100%; /* Ensure minimum width */
     }
 }
 
