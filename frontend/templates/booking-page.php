@@ -38,7 +38,7 @@ if (!$user_has_access) {
     return;
 }
 
-// **NOWE ZABEZPIECZENIE** - Jeśli użytkownik nie ma numeru klubowego, nie może rezerwować
+// Jeśli użytkownik nie ma numeru klubowego, nie może rezerwować
 if (!$club_number) {
     echo "<p style='color: red; font-size: 18px;'>Nie masz przypisanego numeru klubowego. Uzupełnij go w swoim profilu lub skontaktuj się z administratorem.</p>";
     return;
@@ -74,7 +74,6 @@ function srbs_is_slot_booked($bookings, $stand_number, $time_slot)
 <div class="srbs-booking-container">
     <h1>Rezerwacje na dzień <?php echo date_i18n('j F Y', strtotime($next_reservation_date)); ?> r.</h1>
     <p><?php echo esc_html($custom_message); ?></p>
-
     <table class="srbs-booking-table">
         <thead>
             <tr>
