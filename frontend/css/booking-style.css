@@ -75,64 +75,33 @@
     justify-content: center;
 }
 
-/* Style dla urządzeń mobilnych */
 @media screen and (max-width: 768px) {
-    .srbs-booking-table {
-        display: block;
-    }
-
     .srbs-booking-table thead {
-        display: none; /* Ukryj nagłówki na mobile */
+        display: none;
     }
 
-    .srbs-booking-table tbody,
-    .srbs-booking-table tr,
-    .srbs-booking-table td {
+    .srbs-booking-table, .srbs-booking-table tbody, .srbs-booking-table tr, .srbs-booking-table td {
         display: block;
         width: 100%;
     }
 
     .srbs-booking-table tr {
         margin-bottom: 15px;
-        border: 2px solid #ddd;
     }
 
     .srbs-booking-table td {
         text-align: right;
         padding-left: 50%;
         position: relative;
-        border-bottom: 1px solid #ddd;
     }
 
-    .srbs-booking-table td:before {
+    .srbs-booking-table td::before {
         content: attr(data-label);
         position: absolute;
-        left: 12px;
-        width: 45%;
+        left: 15px;
+        width: calc(50% - 30px);
+        white-space: nowrap;
         text-align: left;
         font-weight: bold;
-    }
-
-    /* Specjalne style dla ostatniego wiersza (dynamiczne strzelanie) */
-    .srbs-booking-table tr:last-child td {
-        text-align: center;
-        padding-left: 12px;
-    }
-
-    .srbs-booking-table tr:last-child td:before {
-        display: none;
-    }
-}
-
-/* Style dla tabletów */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .srbs-booking-container {
-        padding: 10px;
-    }
-
-    .srbs-booking-table th,
-    .srbs-booking-table td {
-        padding: 8px;
-        font-size: 14px;
     }
 }
