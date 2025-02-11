@@ -85,32 +85,35 @@
         display: none; /* Ukryj nagłówki na mobile */
     }
 
-    .srbs-booking-table tbody,
-    .srbs-booking-table tr,
-    .srbs-booking-table td {
+    .srbs-booking-table tbody {
         display: block;
-        width: 100%;
     }
 
     .srbs-booking-table tr {
+        display: flex;
+        flex-direction: column;
         margin-bottom: 15px;
         border: 2px solid #ddd;
     }
 
     .srbs-booking-table td {
-        text-align: right;
-        padding-left: 50%;
+        display: flex;
+        flex-direction: row;
+        text-align: left;
+        padding: 12px;
         position: relative;
         border-bottom: 1px solid #ddd;
     }
 
     .srbs-booking-table td:before {
         content: attr(data-label);
-        position: absolute;
-        left: 12px;
-        width: 45%;
-        text-align: left;
+        flex: 1;
         font-weight: bold;
+    }
+
+    .srbs-booking-table td span,
+    .srbs-booking-table td button {
+        flex: 2;
     }
 
     /* Specjalne style dla ostatniego wiersza (dynamiczne strzelanie) */
