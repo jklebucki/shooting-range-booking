@@ -1,4 +1,19 @@
 jQuery(document).ready(function ($) {
+    function showModal(message) {
+        var modalHtml = `
+            <div class="srbs-modal-overlay">
+                <div class="srbs-modal">
+                    <p>${message}</p>
+                    <button class="srbs-modal-close">OK</button>
+                </div>
+            </div>
+        `;
+        $("body").append(modalHtml);
+        $(".srbs-modal-close").on("click", function () {
+            $(".srbs-modal-overlay").remove();
+        });
+    }
+
     $(".srbs-book-slot").on("click", function () {
         var standNumber = $(this).data("stand");
         var timeSlot = $(this).data("time");
@@ -19,12 +34,12 @@ jQuery(document).ready(function ($) {
                 if (response.success) {
                     location.reload();
                 } else {
-                    alert(response.data || "Wystąpił błąd podczas dodawania rezerwacji.");
+                    showModal(response.data || "Wystąpił błąd podczas dodawania rezerwacji.");
                     location.reload(); // Refresh the page to show the updated booking status
                 }
             },
             error: function () {
-                alert("Wystąpił błąd podczas komunikacji z serwerem.");
+                showModal("Wystąpił błąd podczas komunikacji z serwerem.");
             }
         });
     });
@@ -45,11 +60,11 @@ jQuery(document).ready(function ($) {
                 if (response.success) {
                     location.reload();
                 } else {
-                    alert(response.data || "Wystąpił błąd podczas anulowania rezerwacji.");
+                    showModal(response.data || "Wystąpił błąd podczas anulowania rezerwacji.");
                 }
             },
             error: function () {
-                alert("Wystąpił błąd podczas komunikacji z serwerem.");
+                showModal("Wystąpił błąd podczas komunikacji z serwerem.");
             }
         });
     });
