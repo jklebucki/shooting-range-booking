@@ -7,13 +7,22 @@ global $wpdb;
 $users = get_users();
 
 $sort_by = isset($_GET['sort_by']) ? sanitize_text_field($_GET['sort_by']) : 'ID';
-$order = isset($_GET['order']) && $_GET['order'] === 'desc' ? 'desc' : 'asc';
+$order = isset($_GET['order']) && $_GET['order'] === 'asc' ? 'asc' : 'desc';
 
 usort($users, function ($a, $b) use ($sort_by, $order) {
-    if ($a->$sort_by == $b->$sort_by) {
-        return 0;
+    if ($sort_by === 'club_number') {
+        $a_meta = get_user_meta($a->ID, 'club_number', true);
+        $b_meta = get_user_meta($b->ID, 'club_number', true);
+        if ($a_meta == $b_meta) {
+            return 0;
+        }
+        return ($order === 'asc' ? ($a_meta < $b_meta) : ($a_meta > $b_meta)) ? -1 : 1;
+    } else {
+        if ($a->$sort_by == $b->$sort_by) {
+            return 0;
+        }
+        return ($order === 'asc' ? ($a->$sort_by < $b->$sort_by) : ($a->$sort_by > $b->$sort_by)) ? -1 : 1;
     }
-    return ($order === 'asc' ? ($a->$sort_by < $b->$sort_by) : ($a->$sort_by > $b->$sort_by)) ? -1 : 1;
 });
 ?>
 <div class="wrap srbs-admin">
@@ -26,7 +35,7 @@ usort($users, function ($a, $b) use ($sort_by, $order) {
                 <th class="sortable-column" data-sort="user_email" style="color: white;">Email</th>
                 <th class="sortable-column" data-sort="first_name" style="color: white;">Imię</th>
                 <th class="sortable-column" data-sort="last_name" style="color: white;">Nazwisko</th>
-                <th style="color: white;">Numer Klubowy</th>
+                <th class="sortable-column" data-sort="club_number" style="color: white;">Numer Klubowy</th>
                 <th style="color: white;">Role</th>
                 <th style="color: white;">Akcje</th>
             </tr>
