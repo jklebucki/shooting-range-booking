@@ -6,17 +6,26 @@ if (!current_user_can('manage_options')) {
 global $wpdb;
 $users = get_users();
 
+$sort_by = isset($_GET['sort_by']) ? sanitize_text_field($_GET['sort_by']) : 'ID';
+$order = isset($_GET['order']) && $_GET['order'] === 'desc' ? 'desc' : 'asc';
+
+usort($users, function ($a, $b) use ($sort_by, $order) {
+    if ($a->$sort_by == $b->$sort_by) {
+        return 0;
+    }
+    return ($order === 'asc' ? ($a->$sort_by < $b->$sort_by) : ($a->$sort_by > $b->$sort_by)) ? -1 : 1;
+});
 ?>
 <div class="wrap srbs-admin">
     <h1>Zarządzanie Użytkownikami</h1>
     <table class="wp-list-table widefat fixed striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Użytkownik</th>
-                <th>Email</th>
-                <th>Imię</th>
-                <th>Nazwisko</th>
+                <th><a href="?sort_by=ID&order=<?php echo $sort_by === 'ID' && $order === 'asc' ? 'desc' : 'asc'; ?>">ID</a></th>
+                <th><a href="?sort_by=user_login&order=<?php echo $sort_by === 'user_login' && $order === 'asc' ? 'desc' : 'asc'; ?>">Użytkownik</a></th>
+                <th><a href="?sort_by=user_email&order=<?php echo $sort_by === 'user_email' && $order === 'asc' ? 'desc' : 'asc'; ?>">Email</a></th>
+                <th><a href="?sort_by=first_name&order=<?php echo $sort_by === 'first_name' && $order === 'asc' ? 'desc' : 'asc'; ?>">Imię</a></th>
+                <th><a href="?sort_by=last_name&order=<?php echo $sort_by === 'last_name' && $order === 'asc' ? 'desc' : 'asc'; ?>">Nazwisko</a></th>
                 <th>Numer Klubowy</th>
                 <th>Role</th>
                 <th>Akcje</th>

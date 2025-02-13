@@ -31,8 +31,8 @@
 }
 
 .srbs-booking-table th:first-child, .srbs-booking-table td:first-child {
-    width: 100px; /* Adjust width to ensure text fits in one line */
-    min-width: 100px; /* Ensure minimum width */
+    width: 120px; /* Adjust width to ensure text fits in one line */
+    min-width: 120px; /* Ensure minimum width */
 }
 
 .srbs-book-slot {
@@ -54,6 +54,7 @@
     white-space: nowrap; /* Ensure content fits in one line */
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 36px !important; /* Match the height of the badge */
 }
 
 .srbs-book-slot:hover {
@@ -75,6 +76,7 @@
     white-space: nowrap; /* Ensure content fits in one line */
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 36px !important; /* Match the height of the book slot */
 }
 
 .srbs-cancel-booking {
@@ -84,7 +86,7 @@
     color: red;
     font-size: 14px;
     cursor: pointer;
-    margin-left: 5px; /* Add margin to separate from text */
+    margin: 0px 0px 3px 5px !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -177,4 +179,8 @@
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
+}
+
+.srbs-booking-table th, .srbs-booking-table td, .srbs-book-slot, .badge, .srbs-cancel-booking {
+    font-size: 16px !important; /* Force font size */
 }
