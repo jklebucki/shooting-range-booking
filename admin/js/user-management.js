@@ -25,4 +25,17 @@ jQuery(document).ready(function ($) {
             location.reload();
         });
     });
+
+    // Sorting functionality
+    document.querySelectorAll(".sortable-column").forEach(column => {
+        column.addEventListener("click", function() {
+            const sort_by = this.getAttribute("data-sort");
+            const current_order = new URLSearchParams(window.location.search).get("order");
+            const order = current_order === "asc" ? "desc" : "asc";
+            const url = new URL(window.location.href);
+            url.searchParams.set("sort_by", sort_by);
+            url.searchParams.set("order", order);
+            window.location.href = url.toString();
+        });
+    });
 });

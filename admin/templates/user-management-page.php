@@ -21,14 +21,14 @@ usort($users, function ($a, $b) use ($sort_by, $order) {
     <table class="wp-list-table widefat fixed striped">
         <thead>
             <tr>
-                <th><a href="?sort_by=ID&order=<?php echo $sort_by === 'ID' && $order === 'asc' ? 'desc' : 'asc'; ?>">ID</a></th>
-                <th><a href="?sort_by=user_login&order=<?php echo $sort_by === 'user_login' && $order === 'asc' ? 'desc' : 'asc'; ?>">Użytkownik</a></th>
-                <th><a href="?sort_by=user_email&order=<?php echo $sort_by === 'user_email' && $order === 'asc' ? 'desc' : 'asc'; ?>">Email</a></th>
-                <th><a href="?sort_by=first_name&order=<?php echo $sort_by === 'first_name' && $order === 'asc' ? 'desc' : 'asc'; ?>">Imię</a></th>
-                <th><a href="?sort_by=last_name&order=<?php echo $sort_by === 'last_name' && $order === 'asc' ? 'desc' : 'asc'; ?>">Nazwisko</a></th>
-                <th>Numer Klubowy</th>
-                <th>Role</th>
-                <th>Akcje</th>
+                <th class="sortable-column" data-sort="ID" style="color: white;">ID</th>
+                <th class="sortable-column" data-sort="user_login" style="color: white;">Użytkownik</th>
+                <th class="sortable-column" data-sort="user_email" style="color: white;">Email</th>
+                <th class="sortable-column" data-sort="first_name" style="color: white;">Imię</th>
+                <th class="sortable-column" data-sort="last_name" style="color: white;">Nazwisko</th>
+                <th style="color: white;">Numer Klubowy</th>
+                <th style="color: white;">Role</th>
+                <th style="color: white;">Akcje</th>
             </tr>
         </thead>
         <tbody>
